@@ -1,9 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
 
-export interface DefaultTheme {
-  body: string
-}
-
 export const GlobalStyle = createGlobalStyle`
     * {
         margin: 0;
@@ -12,12 +8,12 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-color: ${(props) => props.theme['gray-400']};
-        color: ${(props) => props.theme['gray-100']};
+        background-color: ${(props) => props.theme['gray-600']};
+        color: ${(props) => props.theme['gray-300']};
     }
 
     body, input, textarea, button {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-weight: 400;
         font-size: 1rem;
         -webkit-font-smoothing: antialiased;
