@@ -12,16 +12,13 @@ class TaskRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'tags' => 'array|min:1|exists:tags,id',
-            'is_finished' => 'nullable|boolean',
+            'tags' => 'required|array|min:1|exists:tags,id',
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
             'data' => $validator->errors(),
         ]));
     }

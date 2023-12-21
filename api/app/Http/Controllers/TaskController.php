@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TaskRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
-use Illuminate\Support\Collection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TaskController extends Controller
 {
-    public function index(): Collection
+    public function index(): AnonymousResourceCollection
     {
-        return Task::with('tags')->get();
+        return TaskResource::collection(
+            Task::with('tags')->get()
+        );
     }
 
     public function store(TaskRequest $request): void

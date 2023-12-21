@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TagRequest;
+use App\Http\Resources\TagResource;
 use App\Models\Tag;
-use Illuminate\Support\Collection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TagController extends Controller
 {
-    public function index(): Collection
+    public function index(): AnonymousResourceCollection
     {
-        return Tag::all();
+        return TagResource::collection(
+            Tag::all()
+        );
     }
 
     public function store(TagRequest $request): void

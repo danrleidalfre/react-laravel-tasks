@@ -12,7 +12,7 @@ class Task extends Model
 
     protected $fillable = [
         'title',
-        'is_finished'
+        'completed_at'
     ];
 
     public function tags(): BelongsToMany
