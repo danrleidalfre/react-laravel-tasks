@@ -23,17 +23,22 @@ class TaskController extends Controller
         $task->tags()->sync($data['tags']);
     }
 
-    public function update(TaskRequest $request, Task $task): void
-    {
-        $data = $request->all();
-        $task->update($data);
-        $task->tags()->sync($data['tags']);
-    }
-
     public function destroy(int $id): void
     {
         $task = Task::where('id', $id)->first();
         $task->tags()->detach();
         $task->delete();
+    }
+
+    public function complete(int $id): void
+    {
+        Task::where('id', $id)->update(['completed_at' => now()]);
+    }
+
+    public function update(TaskRequest $request, Task $task): void
+    {
+        $data = $request->all();
+        $task->update($data);
+        $task->tags()->sync($data['tags']);
     }
 }

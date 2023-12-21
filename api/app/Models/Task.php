@@ -15,6 +15,10 @@ class Task extends Model
         'completed_at'
     ];
 
+    protected $casts = [
+        'completed_at' => 'datetime'
+    ];
+
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'task_tag');
