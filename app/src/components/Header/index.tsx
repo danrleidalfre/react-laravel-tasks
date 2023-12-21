@@ -1,11 +1,25 @@
-import { HeaderContainer } from './styles.ts'
+import { Container, Head, Logo, Navigation } from './styles.ts'
 import { NavLink } from 'react-router-dom'
+import { CheckCircle, CircleWavyCheck, TagSimple } from 'phosphor-react'
 
 export function Header() {
   return (
-    <HeaderContainer>
-      <NavLink to="/">Tasks</NavLink>
-      <NavLink to="/tags">Tags</NavLink>
-    </HeaderContainer>
+    <Container>
+      <Head>
+        <Logo>
+          <CircleWavyCheck />
+        </Logo>
+        <Navigation>
+          <NavLink to="/">
+            <CheckCircle size={20} />
+            <span>Tasks</span>
+          </NavLink>
+          <NavLink to="/tags">
+            <TagSimple size={20} />
+            <span>Tags</span>
+          </NavLink>
+        </Navigation>
+      </Head>
+    </Container>
   )
 }
