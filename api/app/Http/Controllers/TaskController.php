@@ -35,9 +35,10 @@ class TaskController extends Controller
         Task::where('id', $id)->update(['completed_at' => now()]);
     }
 
-    public function update(TaskRequest $request, Task $task): void
+    public function update(TaskRequest $request, int $id): void
     {
         $data = $request->all();
+        $task = Task::with('tags')->where('id', $id)->first();
         $task->update($data);
         $task->tags()->sync($data['tags']);
     }

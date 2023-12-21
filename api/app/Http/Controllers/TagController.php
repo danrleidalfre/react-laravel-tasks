@@ -21,13 +21,13 @@ class TagController extends Controller
         Tag::create($request->all());
     }
 
-    public function update(TagRequest $request, Tag $task): void
+    public function update(TagRequest $request, int $id): void
     {
-        $task->update($request->all());
+        Tag::where('id', $id)->update($request->all());
     }
 
     public function destroy(int $id): void
     {
-        $task = Tag::where('id', $id)->delete();
+        Tag::where('id', $id)->delete();
     }
 }
