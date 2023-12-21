@@ -1,3 +1,5 @@
+import { Input } from '../../components/Input'
+
 export function Tasks() {
-  return <h1>Home</h1>
+  return <Input placeholder="Add Task" />
 }

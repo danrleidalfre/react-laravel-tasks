@@ -7,7 +7,7 @@ export function Header() {
     <Container>
       <Head>
         <Logo>
-          <CircleWavyCheck />
+          <CircleWavyCheck weight={'fill'} />
         </Logo>
         <Navigation>
           <NavLink to="/">
