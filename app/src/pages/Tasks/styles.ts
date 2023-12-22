@@ -11,6 +11,14 @@ export const Form = styled.form`
   margin-top: 2rem;
   grid-template-columns: 2fr 2fr auto;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    button {
+      width: 100%;
+    }
+  }
 `
 
 export const Section = styled.section``
@@ -21,7 +29,7 @@ export const Article = styled.article`
   border: 1px solid ${(props) => props.theme['gray-400']};
   border-radius: 8px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 1rem;
 

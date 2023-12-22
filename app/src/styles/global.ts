@@ -23,4 +23,10 @@ export const GlobalStyle = createGlobalStyle`
         outline: 0;
         box-shadow: none;
     }
+
+    @media (max-width: 768px) {
+        :root {
+            font-size: 85%;
+        }
+    }
 `

@@ -11,6 +11,14 @@ export const Form = styled.form`
   margin-top: 2rem;
   grid-template-columns: 4fr auto;
   gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    button {
+      width: 100%;
+    }
+  }
 `
 
 export const Section = styled.section``
