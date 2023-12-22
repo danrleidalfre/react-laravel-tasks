@@ -7,7 +7,13 @@ export const Component = styled.div`
     padding-left: 1rem;
     border-radius: 8px;
     background-color: ${(props) => props.theme['gray-500']};
-    color: ${(props) => props.theme['gray-100']};
+    color: ${(props) => props.theme['gray-300']};
     border: 1px solid ${(props) => props.theme['gray-700']};
+    font-size: 1rem;
+
+    &::placeholder {
+      color: ${(props) => props.theme['gray-300']};
+      font-size: 1rem;
+    }
   }
 `
