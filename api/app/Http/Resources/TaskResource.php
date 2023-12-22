@@ -12,7 +12,13 @@ class TaskResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'tags' => $this->tags->pluck('title'),
+            'tags' => $this->tags->map(function ($tag) {
+                return [
+                    'value' => $tag->id,
+                    'label' => $tag->title,
+                    'created_at' => $tag->created_at->format('d/m/Y H:i'),
+                ];
+            }),
             'created_at' => $this->created_at->format('d/m/Y H:i'),
             'completed_at' => $this->completed_at ? $this->completed_at->format('d/m/Y H:i') : null,
         ];
