@@ -6,8 +6,8 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../lib/axios.ts'
 
 interface Tag {
-  id: number
-  title: string
+  value: number
+  label: string
   created_at: string
 }
 
@@ -83,22 +83,22 @@ export function Tags() {
       <Section>
         {tags.map((tag) => {
           return (
-            <Article key={tag.id}>
+            <Article key={tag.value}>
               <h3>
-                {tag.title} <span>- Criada em {tag.created_at}</span>
+                {tag.label} <span>- Criada em {tag.created_at}</span>
               </h3>
               <div className="buttons">
                 <button
                   title="Editar Tag"
                   type="button"
-                  onClick={() => handleEditTag(tag.id, tag.title)}
+                  onClick={() => handleEditTag(tag.value, tag.label)}
                 >
                   <Pen size={20} />
                 </button>
                 <button
                   title="Excluir Tag"
                   type="button"
-                  onClick={() => handleRemoveTag(tag.id)}
+                  onClick={() => handleRemoveTag(tag.value)}
                 >
                   <Trash size={20} />
                 </button>

@@ -1,24 +1,47 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { MultiSelect } from 'react-multi-select-component'
 import { Component } from './styles.ts'
+import { api } from '../../lib/axios.ts'
 
-export function Select() {
-  const options = [
-    { label: 'Front End', value: 1 },
-    { label: 'Back End', value: 2 },
-    { label: 'Mobile', value: 3 },
-    { label: 'Dev Ops', value: 4 },
-  ]
+interface Tag {
+  value: number
+  label: string
+  created_at: string
+}
 
-  const [selected, setSelected] = useState([])
+interface TagProps {
+  onSelectedTags: (tags: Tag) => void
+  tags: Tag[]
+}
+
+export function Select({ tags, onSelectedTags }: TagProps) {
+  const [selected, setSelected] = useState<Tag[]>([])
+  const [options, setOptions] = useState<Tag[]>([])
+
+  function handleSetSelect(tags: Tag) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    setSelected(tags)
+    onSelectedTags(tags)
+  }
+
+  useEffect(() => {
+    setSelected(tags)
+  }, [tags])
+
+  useEffect(() => {
+    api.get('tags').then((response) => {
+      setOptions(response.data.data)
+    })
+  }, [])
 
   return (
     <Component>
       <MultiSelect
         options={options}
         value={selected}
-        onChange={setSelected}
-        labelledBy="Select"
+        onChange={handleSetSelect}
+        labelledBy="Select Multiple"
         disableSearch
         hasSelectAll={false}
         overrideStrings={{
