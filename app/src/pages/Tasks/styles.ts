@@ -21,10 +21,40 @@ export const Form = styled.form`
   }
 `
 
-export const Section = styled.section``
+export const Section = styled.section`
+  max-width: 70rem;
+  margin: 1.5rem 0;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+
+      &:first-child {
+        color: ${(props) => props.theme.blue};
+      }
+
+      &:last-child {
+        color: ${(props) => props.theme.purple};
+      }
+
+      span {
+        color: ${(props) => props.theme['gray-200']};
+        background-color: ${(props) => props.theme['gray-400']};
+        font-size: 0.875rem;
+        margin-left: 0.5rem;
+        padding: 0.15rem 0.5rem;
+        border-radius: 10px;
+      }
+    }
+  }
+`
 
 export const Article = styled.article`
-  margin-top: 1rem;
   background-color: ${(props) => props.theme['gray-500']};
   border: 1px solid ${(props) => props.theme['gray-400']};
   border-radius: 8px;
@@ -32,6 +62,7 @@ export const Article = styled.article`
   align-items: flex-start;
   justify-content: space-between;
   padding: 1rem;
+  margin-bottom: 1rem;
 
   input {
     position: absolute;
