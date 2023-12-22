@@ -20,6 +20,7 @@ class TaskResource extends JsonResource
                 ];
             }),
             'created_at' => $this->created_at->format('d/m/Y H:i'),
+            'updated_at' => $this->updated_at->format('d/m/Y H:i'),
             'completed_at' => $this->completed_at ? $this->completed_at->format('d/m/Y H:i') : null,
         ];
     }

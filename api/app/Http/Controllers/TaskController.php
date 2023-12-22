@@ -12,7 +12,9 @@ class TaskController extends Controller
     public function index(): AnonymousResourceCollection
     {
         return TaskResource::collection(
-            Task::with('tags')->get()
+            Task::with('tags')
+                ->orderByDesc('created_at')
+                ->get()
         );
     }
 

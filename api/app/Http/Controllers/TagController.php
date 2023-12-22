@@ -12,7 +12,7 @@ class TagController extends Controller
     public function index(): AnonymousResourceCollection
     {
         return TagResource::collection(
-            Tag::all()
+            Tag::orderByDesc('created_at')->get()
         );
     }
 
