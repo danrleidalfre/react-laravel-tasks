@@ -1,15 +1,18 @@
 import { Component } from './styles.ts'
 import { ButtonHTMLAttributes } from 'react'
-import { PlusCircle } from 'phosphor-react'
+import { CheckCircle, PlusCircle } from 'phosphor-react'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  isEdit?: boolean
+}
 
-export function Button({ ...props }: ButtonProps) {
+export function Button({ isEdit = false, ...props }: ButtonProps) {
   return (
     <Component>
       <button {...props}>
-        <PlusCircle size={20} weight={'bold'} />
-        <span>Adicionar</span>
+        {isEdit && <CheckCircle size={20} weight={'bold'} />}
+        {!isEdit && <PlusCircle size={20} weight={'bold'} />}
+        <span>{isEdit ? 'Salvar' : 'Adicionar'}</span>
       </button>
     </Component>
   )
