@@ -31,7 +31,7 @@ export const Component = styled.div`
     }
 
     .dropdown-content {
-      max-width: max-content;
+      left: 0;
 
       .panel-content {
         background-color: ${(props) => props.theme['gray-500']};

@@ -43,7 +43,7 @@ export const Navigation = styled.nav`
     justify-content: center;
     width: 7rem;
     height: 2.5rem;
-    background-color: ${(props) => props.theme['blue-dark']};
+    background-color: ${(props) => props.theme['purple-dark']};
     border: 0;
     border-radius: 8px;
     color: ${(props) => props.theme['gray-100']};
@@ -60,6 +60,6 @@ export const Navigation = styled.nav`
   }
 
   a:hover {
-    background-color: ${(props) => props.theme.blue};
+    background-color: ${(props) => props.theme.purple};
   }
 `
