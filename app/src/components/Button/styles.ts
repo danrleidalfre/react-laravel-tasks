@@ -20,5 +20,9 @@ export const Component = styled.div`
     &:hover {
       background-color: ${(props) => props.theme.blue};
     }
+
+    span {
+      margin-left: 0.25rem;
+    }
   }
 `

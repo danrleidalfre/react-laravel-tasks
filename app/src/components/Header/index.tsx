@@ -12,7 +12,7 @@ export function Header() {
         <Navigation>
           <NavLink to="/">
             <CheckCircle size={20} />
-            <span>Tasks</span>
+            <span>Tarefas</span>
           </NavLink>
           <NavLink to="/tags">
             <TagSimple size={20} />

@@ -8,7 +8,7 @@ export const Component = styled.div`
     border-radius: 8px;
     background-color: ${(props) => props.theme['gray-500']};
     color: ${(props) => props.theme['gray-300']};
-    border: 1px solid ${(props) => props.theme['gray-700']};
+    border: 1px solid ${(props) => props.theme['gray-500']};
     font-size: 1rem;
 
     &::placeholder {

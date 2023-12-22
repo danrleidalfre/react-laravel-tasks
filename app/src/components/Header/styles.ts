@@ -41,7 +41,7 @@ export const Navigation = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 7rem;
+    padding: 0 1rem;
     height: 2.5rem;
     background-color: ${(props) => props.theme['purple-dark']};
     border: 0;

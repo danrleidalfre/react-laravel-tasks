@@ -21,6 +21,10 @@ export function Select() {
         labelledBy="Select"
         disableSearch
         hasSelectAll={false}
+        overrideStrings={{
+          selectSomeItems: 'Selecione as Tags...',
+          allItemsAreSelected: 'Todas as Tags Selecionadas',
+        }}
       />
     </Component>
   )

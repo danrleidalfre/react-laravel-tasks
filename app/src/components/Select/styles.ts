@@ -9,14 +9,14 @@ export const Component = styled.div`
     padding: 0 1rem;
     border-radius: 8px;
     background-color: ${(props) => props.theme['gray-500']};
-    border: 1px solid ${(props) => props.theme['gray-700']};
+    border: 1px solid ${(props) => props.theme['gray-500']};
     cursor: pointer;
     font-size: 1rem;
     color: ${(props) => props.theme['gray-300']};
 
     &:focus-within {
       box-shadow: none;
-      border: 1px solid ${(props) => props.theme['gray-700']};
+      border: 1px solid ${(props) => props.theme['gray-500']};
     }
 
     .dropdown-heading {
@@ -32,6 +32,8 @@ export const Component = styled.div`
 
     .dropdown-content {
       left: 0;
+      border-radius: 8px;
+      border: 1px solid ${(props) => props.theme['gray-400']};
 
       .panel-content {
         background-color: ${(props) => props.theme['gray-500']};

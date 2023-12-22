@@ -1,14 +1,16 @@
 import { Component } from './styles.ts'
 import { ButtonHTMLAttributes } from 'react'
+import { PlusCircle } from 'phosphor-react'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  label: string
-}
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-export function Button({ label = 'Add Task', ...props }: ButtonProps) {
+export function Button({ ...props }: ButtonProps) {
   return (
     <Component>
-      <button {...props}>{label}</button>
+      <button {...props}>
+        <PlusCircle size={20} weight={'bold'} />
+        <span>Adicionar</span>
+      </button>
     </Component>
   )
 }
