@@ -17,6 +17,7 @@ interface Task {
   title: string
   tags: Tag[]
   created_at: string
+  updated_at: string
   completed_at: string | null
 }
 
@@ -140,12 +141,18 @@ export function Tasks() {
                   })}
                 </div>
                 <div className="date">
-                  <span>
+                  <span title="Criação">
                     <Flag size={16} />
                     {task.created_at}
                   </span>
+                  {task.updated_at && task.updated_at !== task.created_at && (
+                    <span title="Edição">
+                      <Pen size={16} />
+                      {task.updated_at}
+                    </span>
+                  )}
                   {task.completed_at && (
-                    <span>
+                    <span title="Conclusão">
                       <CheckCircle size={16} />
                       {task.completed_at}
                     </span>
