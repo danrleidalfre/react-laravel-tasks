@@ -24,7 +24,6 @@ export const Article = styled.article`
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  margin-bottom: 0.75rem;
 
   input {
     position: absolute;
@@ -41,8 +40,8 @@ export const Article = styled.article`
     content: '';
     display: inline-block;
     vertical-align: middle;
-    width: 1.125rem;
-    height: 1.125rem;
+    width: 1.5rem;
+    height: 1.5rem;
     background-color: transparent;
     border-radius: 50%;
     border: 2px solid ${(props) => props.theme.blue};
@@ -69,10 +68,10 @@ export const Article = styled.article`
     content: '';
     background-image: url('/public/check.svg');
     background-repeat: no-repeat;
-    background-position: center 4px;
-    background-size: 0.8rem 0.8rem;
-    width: 1.125rem;
-    height: 1.125rem;
+    background-position: center 5px;
+    background-size: 1rem 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -89,8 +88,6 @@ export const Article = styled.article`
       font-size: 1rem;
       font-weight: bold;
       color: ${(props) => props.theme['gray-100']};
-      line-height: 140%;
-      text-align: left;
       width: 100%;
     }
 
@@ -101,18 +98,32 @@ export const Article = styled.article`
 
       h4 {
         display: flex;
-        font-weight: 400;
+        font-weight: 500;
         align-items: center;
-        font-size: 0.875rem;
-        background-color: ${(props) => props.theme['blue-dark']};
+        font-size: 0.75rem;
+        background-color: ${(props) => props.theme['purple-dark']};
         color: ${(props) => props.theme['gray-100']};
         padding: 0.125rem 0.5rem;
         border-radius: 0.5rem;
         transition: background-color 0.2s;
         cursor: default;
+      }
+    }
 
-        &:hover {
-          background-color: ${(props) => props.theme.blue};
+    .date {
+      display: flex;
+      margin-top: 0.5rem;
+      gap: 0.5rem;
+
+      span {
+        display: flex;
+        align-items: center;
+        font-size: 0.75rem;
+        font-weight: 400;
+        color: ${(props) => props.theme['gray-300']};
+
+        svg {
+          margin-right: 0.25rem;
         }
       }
     }
