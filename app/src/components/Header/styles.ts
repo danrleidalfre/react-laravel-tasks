@@ -16,10 +16,11 @@ export const Head = styled.header`
 `
 
 export const Logo = styled.div`
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 3rem;
+  width: 3rem;
 
   svg {
+    padding: 0.25rem;
     background-color: ${(props) => props.theme.colors['purple-dark']};
     color: ${(props) => props.theme.colors.white};
     border-radius: 8px;

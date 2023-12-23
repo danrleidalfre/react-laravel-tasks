@@ -1,11 +1,5 @@
 import { Container, Head, Logo, Navigation, ToggleTheme } from './styles.ts'
-import {
-  CheckCircle,
-  CircleWavyCheck,
-  Moon,
-  Sun,
-  TagSimple,
-} from 'phosphor-react'
+import { CheckCircle, ListChecks, Moon, Sun, TagSimple } from 'phosphor-react'
 import { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
 import { NavLink } from 'react-router-dom'
@@ -20,7 +14,7 @@ export function Header({ toggleTheme }: Props) {
     <Container>
       <Head>
         <Logo>
-          <CircleWavyCheck weight={'fill'} />
+          <ListChecks />
         </Logo>
         <Navigation>
           <NavLink to="/">
