@@ -27,7 +27,20 @@ export function Header({ toggleTheme }: Props) {
             <span>Tags</span>
           </NavLink>
           <ToggleTheme onClick={toggleTheme}>
-            {title === 'light' ? <Sun size={35} /> : <Moon size={35} />}
+            {title === 'light' ? (
+              <Sun
+                size={32}
+                data-tooltip-id="tooltip"
+                data-tooltip-content="Modo Claro"
+              />
+            ) : (
+              <Moon
+                size={32}
+                data-tooltip-id="tooltip"
+                data-tooltip-content="Modo Escuro"
+                data-tooltip-variant="light"
+              />
+            )}
           </ToggleTheme>
         </Navigation>
       </Head>

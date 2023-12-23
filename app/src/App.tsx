@@ -6,6 +6,7 @@ import dark from './styles/themes/dark.ts'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './routes/Router.tsx'
 import { ToastContainer } from 'react-toastify'
+import { Tooltip } from 'react-tooltip'
 
 export function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light)
@@ -18,6 +19,7 @@ export function App() {
       <GlobalStyle />
       <BrowserRouter>
         <ToastContainer />
+        <Tooltip id="tooltip" />
         <Router toggleTheme={toggleTheme} />
       </BrowserRouter>
     </ThemeProvider>

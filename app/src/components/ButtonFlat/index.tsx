@@ -12,12 +12,20 @@ const ButtonFlat = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   return (
     <Button type="button" ref={ref} {...rest}>
       {isEdit && (
-        <IconEdit>
+        <IconEdit
+          data-tooltip-id="tooltip"
+          data-tooltip-content="Editar"
+          data-tooltip-variant="light"
+        >
           <Pen size={20} />
         </IconEdit>
       )}
       {!isEdit && (
-        <IconRemove>
+        <IconRemove
+          data-tooltip-id="tooltip"
+          data-tooltip-content="Remover"
+          data-tooltip-variant="light"
+        >
           <Trash size={20} />
         </IconRemove>
       )}

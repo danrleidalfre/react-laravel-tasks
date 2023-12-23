@@ -241,19 +241,38 @@ export function Tasks() {
               <Dates>
                 <Date>
                   <Flag size={16} />
-                  <time dateTime={task.created_at}>{task.created_at}</time>
+                  <time
+                    dateTime={task.created_at}
+                    data-tooltip-id="tooltip"
+                    data-tooltip-content="Criação"
+                    data-tooltip-variant="light"
+                  >
+                    {task.created_at}
+                  </time>
                 </Date>
                 {task.created_at !== task.updated_at &&
                   task.completed_at !== task.updated_at && (
                     <Date>
                       <Pen size={16} />
-                      <time dateTime={task.updated_at}>{task.updated_at}</time>
+                      <time
+                        dateTime={task.updated_at}
+                        data-tooltip-id="tooltip"
+                        data-tooltip-content="Edição"
+                        data-tooltip-variant="light"
+                      >
+                        {task.updated_at}
+                      </time>
                     </Date>
                   )}
                 {task.completed_at && (
                   <Date>
                     <CheckCircle size={16} />
-                    <time dateTime={task.completed_at}>
+                    <time
+                      dateTime={task.completed_at}
+                      data-tooltip-id="tooltip"
+                      data-tooltip-content="Conclusão"
+                      data-tooltip-variant="light"
+                    >
                       {task.completed_at}
                     </time>
                   </Date>
