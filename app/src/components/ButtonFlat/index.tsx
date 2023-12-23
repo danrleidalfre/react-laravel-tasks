@@ -1,14 +1,16 @@
+import { ButtonHTMLAttributes, forwardRef } from 'react'
 import { Button, IconEdit, IconRemove } from './styles.ts'
-import { ButtonHTMLAttributes } from 'react'
 import { Pen, Trash } from 'phosphor-react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isEdit?: boolean
 }
 
-export function ButtonFlat({ isEdit = true, ...props }: ButtonProps) {
+const ButtonFlat = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const { isEdit = true, ...rest } = props
+
   return (
-    <Button type="button" {...props}>
+    <Button type="button" ref={ref} {...rest}>
       {isEdit && (
         <IconEdit>
           <Pen size={20} />
@@ -21,4 +23,7 @@ export function ButtonFlat({ isEdit = true, ...props }: ButtonProps) {
       )}
     </Button>
   )
-}
+})
+
+ButtonFlat.displayName = 'ButtonFlat'
+export default ButtonFlat

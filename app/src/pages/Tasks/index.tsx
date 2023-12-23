@@ -17,9 +17,11 @@ import { Button } from '../../components/Button'
 import { CheckCircle, Flag, Pen } from 'phosphor-react'
 import { api } from '../../lib/axios.ts'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import { ButtonFlat } from '../../components/ButtonFlat'
+import ButtonFlat from '../../components/ButtonFlat'
 import { Checkbox } from '../../components/Checkbox'
 import { toast } from 'react-toastify'
+import * as Dialog from '@radix-ui/react-alert-dialog'
+import { Modal } from '../../components/Modal'
 
 interface Tag {
   value: number
@@ -116,7 +118,7 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
-          showToastSuccess(`Tarefa "${title}" atualizada com sucesso`)
+          showToastSuccess(`Tarefa atualizada com sucesso`)
           fetchTasks()
         })
         .catch(({ message }) => {
@@ -129,7 +131,7 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
-          showToastSuccess(`Tarefa "${title}" criada com sucesso`)
+          showToastSuccess(`Tarefa criada com sucesso`)
           fetchTasks()
         })
         .catch(({ message }) => {
@@ -141,22 +143,23 @@ export function Tasks() {
     setTag([])
   }
 
-  function handleEditTask(task: Task) {
+  function handleSetTask(task: Task) {
     setId(task.id)
     setTitle(task.title)
     setTag(task.tags)
   }
 
-  function handleRemoveTask(task: Task) {
+  function onRemoveTask() {
     api
-      .delete(`tasks/${task.id}`)
+      .delete(`tasks/${id}`)
       .then(() => {
-        showToastSuccess(`Tarefa "${task.title}" removida com sucesso`)
+        showToastSuccess(`Tarefa removida com sucesso`)
         fetchTasks()
       })
       .catch(({ message }) => {
         showToastError(message)
       })
+    setId(0)
   }
 
   function handleCompleteTask(task: Task) {
@@ -166,7 +169,7 @@ export function Tasks() {
     api
       .put(`complete-task/${task.id}`)
       .then(() => {
-        showToastSuccess(`Tarefa "${task.title}" marcada como concluída`)
+        showToastSuccess(`Tarefa marcada como concluída`)
         fetchTasks()
       })
       .catch(({ message }) => {
@@ -258,11 +261,13 @@ export function Tasks() {
               </Dates>
             </Content>
             <Buttons>
-              <ButtonFlat onClick={() => handleEditTask(task)} />
-              <ButtonFlat
-                isEdit={false}
-                onClick={() => handleRemoveTask(task)}
-              />
+              <ButtonFlat onClick={() => handleSetTask(task)} />
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                  <ButtonFlat isEdit={false} onClick={() => setId(task.id)} />
+                </Dialog.Trigger>
+                <Modal type={'Tarefa'} handleConfirm={onRemoveTask} />
+              </Dialog.Root>
             </Buttons>
           </Article>
         )

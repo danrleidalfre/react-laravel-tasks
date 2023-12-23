@@ -15,9 +15,9 @@ export function App() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <ToastContainer />
       <GlobalStyle />
       <BrowserRouter>
+        <ToastContainer />
         <Router toggleTheme={toggleTheme} />
       </BrowserRouter>
     </ThemeProvider>

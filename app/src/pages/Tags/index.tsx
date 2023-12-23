@@ -3,8 +3,10 @@ import { Article, Buttons, Form, Main, Section } from './styles.ts'
 import { Button } from '../../components/Button'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../lib/axios.ts'
-import { ButtonFlat } from '../../components/ButtonFlat'
+import ButtonFlat from '../../components/ButtonFlat'
 import { toast } from 'react-toastify'
+import * as Dialog from '@radix-ui/react-alert-dialog'
+import { Modal } from '../../components/Modal'
 
 interface Tag {
   value: number
@@ -67,7 +69,7 @@ export function Tags() {
           title,
         })
         .then(() => {
-          showToastSuccess(`Tag "${title}" atualizada com sucesso`)
+          showToastSuccess(`Tag atualizada com sucesso`)
           fetchTags()
         })
         .catch(({ message }) => {
@@ -79,7 +81,7 @@ export function Tags() {
           title,
         })
         .then(() => {
-          showToastSuccess(`Tag "${title}" criada com sucesso`)
+          showToastSuccess(`Tag criada com sucesso`)
           fetchTags()
         })
         .catch(({ message }) => {
@@ -95,11 +97,11 @@ export function Tags() {
     setTitle(tag.label)
   }
 
-  function handleRemoveTag(tag: Tag) {
+  function onRemoveTag() {
     api
-      .delete(`tags/${tag.value}`)
+      .delete(`tags/${id}`)
       .then(() => {
-        showToastSuccess(`Tag "${tag.label}" removida com sucesso`)
+        showToastSuccess(`Tag  removida com sucesso`)
         fetchTags()
       })
       .catch(({ message }) => {
@@ -137,10 +139,15 @@ export function Tags() {
               </h3>
               <Buttons>
                 <ButtonFlat onClick={() => handleEditTag(tag)} />
-                <ButtonFlat
-                  onClick={() => handleRemoveTag(tag)}
-                  isEdit={false}
-                />
+                <Dialog.Root>
+                  <Dialog.Trigger asChild>
+                    <ButtonFlat
+                      isEdit={false}
+                      onClick={() => setId(tag.value)}
+                    />
+                  </Dialog.Trigger>
+                  <Modal type={'Tag'} handleConfirm={onRemoveTag} />
+                </Dialog.Root>
               </Buttons>
             </Article>
           )

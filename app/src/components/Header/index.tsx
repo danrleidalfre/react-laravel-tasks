@@ -14,7 +14,8 @@ export function Header({ toggleTheme }: Props) {
     <Container>
       <Head>
         <Logo>
-          TasksApp <CheckCircle weight={'bold'} size={20} />
+          Task<span>App</span>
+          <CheckCircle weight={'bold'} size={20} />
         </Logo>
         <Navigation>
           <NavLink to="/">

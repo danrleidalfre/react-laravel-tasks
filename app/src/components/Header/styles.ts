@@ -24,6 +24,14 @@ export const Logo = styled.h1`
 
   &:hover {
     color: ${(props) => props.theme.colors.purple};
+
+    span {
+      color: ${(props) => props.theme.colors.blue};
+    }
+  }
+
+  span {
+    color: ${(props) => props.theme.colors.purple};
   }
 `
 
@@ -53,13 +61,13 @@ export const Navigation = styled.nav`
       background-color: ${(props) => props.theme.colors.purple};
     }
 
+    &:hover {
+      background-color: ${(props) => props.theme.colors.purple};
+    }
+
     svg {
       margin-right: 5px;
     }
-  }
-
-  a:hover {
-    background-color: ${(props) => props.theme.colors.purple};
   }
 `
 
