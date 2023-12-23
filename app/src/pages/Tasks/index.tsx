@@ -6,6 +6,7 @@ import { CheckCircle, Flag, Pen } from 'phosphor-react'
 import { api } from '../../lib/axios.ts'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { ButtonFlat } from '../../components/ButtonFlat'
+import { Checkbox } from '../../components/Checkbox'
 
 interface Tag {
   value: number
@@ -154,13 +155,11 @@ export function Tasks() {
       {tasks.map((task) => {
         return (
           <Article key={task.id}>
-            <input
-              id={`checkbox-${task.id}`}
-              type="checkbox"
+            <Checkbox
+              forId={`checkbox-${task.id}`}
               checked={!!task.completed_at}
               onChange={() => handleCompleteTask(task)}
             />
-            <label htmlFor={`checkbox-${task.id}`} />
             <div className="title">
               <h3>{task.title}</h3>
               <div className="tags">
