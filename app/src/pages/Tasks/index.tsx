@@ -19,9 +19,9 @@ import { api } from '../../lib/axios.ts'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import ButtonFlat from '../../components/ButtonFlat'
 import { Checkbox } from '../../components/Checkbox'
-import { toast } from 'react-toastify'
 import * as Dialog from '@radix-ui/react-alert-dialog'
 import { Modal } from '../../components/Modal'
+import { showToast } from '../../utils/toast.ts'
 
 interface Tag {
   value: number
@@ -54,35 +54,20 @@ export function Tasks() {
     setTitle(event.target.value)
   }
 
-  function showToastSuccess(text: string) {
-    toast.success(text, {
-      theme: 'colored',
-      hideProgressBar: true,
-    })
-  }
-
-  function showToastWarning(text: string) {
-    toast.warning(text, {
-      theme: 'colored',
-      hideProgressBar: true,
-    })
-  }
-
-  function showToastError(text: string) {
-    toast.error(text, {
-      theme: 'colored',
-      hideProgressBar: true,
-    })
-  }
-
   function validate() {
     if (title === '') {
-      showToastWarning('Necessário informar o nome da Tarefa')
+      showToast({
+        type: 'warning',
+        text: 'Necessário informar o nome da Tarefa',
+      })
       return false
     }
 
     if (tags.length === 0) {
-      showToastWarning('Necessário selecionar ao menos uma Tag')
+      showToast({
+        type: 'warning',
+        text: 'Necessário selecionar ao menos uma Tag',
+      })
       return false
     }
 
@@ -96,7 +81,7 @@ export function Tasks() {
         setTask(response.data.data)
       })
       .catch(({ message }) => {
-        showToastError(message)
+        showToast({ type: 'error', text: message })
       })
   }
 
@@ -118,11 +103,11 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
-          showToastSuccess(`Tarefa atualizada com sucesso`)
+          showToast({ type: 'success', text: 'Tarefa atualizada com sucesso' })
           fetchTasks()
         })
         .catch(({ message }) => {
-          showToastError(message)
+          showToast({ type: 'error', text: message })
         })
     } else {
       api
@@ -131,11 +116,11 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
-          showToastSuccess(`Tarefa criada com sucesso`)
+          showToast({ type: 'success', text: 'Tarefa criada com sucesso' })
           fetchTasks()
         })
         .catch(({ message }) => {
-          showToastError(message)
+          showToast({ type: 'error', text: message })
         })
     }
     setId(0)
@@ -153,11 +138,11 @@ export function Tasks() {
     api
       .delete(`tasks/${id}`)
       .then(() => {
-        showToastSuccess(`Tarefa removida com sucesso`)
+        showToast({ type: 'success', text: 'Tarefa removida com sucesso' })
         fetchTasks()
       })
       .catch(({ message }) => {
-        showToastError(message)
+        showToast({ type: 'error', text: message })
       })
     setId(0)
   }
@@ -169,11 +154,11 @@ export function Tasks() {
     api
       .put(`complete-task/${task.id}`)
       .then(() => {
-        showToastSuccess(`Tarefa marcada como concluída`)
+        showToast({ type: 'success', text: 'Tarefa marcada como concluída' })
         fetchTasks()
       })
       .catch(({ message }) => {
-        showToastError(message)
+        showToast({ type: 'error', text: message })
       })
   }
 
@@ -245,7 +230,6 @@ export function Tasks() {
                     dateTime={task.created_at}
                     data-tooltip-id="tooltip"
                     data-tooltip-content="Criação"
-                    data-tooltip-variant="light"
                   >
                     {task.created_at}
                   </time>
@@ -258,7 +242,6 @@ export function Tasks() {
                         dateTime={task.updated_at}
                         data-tooltip-id="tooltip"
                         data-tooltip-content="Edição"
-                        data-tooltip-variant="light"
                       >
                         {task.updated_at}
                       </time>
@@ -271,7 +254,6 @@ export function Tasks() {
                       dateTime={task.completed_at}
                       data-tooltip-id="tooltip"
                       data-tooltip-content="Conclusão"
-                      data-tooltip-variant="light"
                     >
                       {task.completed_at}
                     </time>

@@ -4,9 +4,9 @@ import { Button } from '../../components/Button'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../lib/axios.ts'
 import ButtonFlat from '../../components/ButtonFlat'
-import { toast } from 'react-toastify'
 import * as Dialog from '@radix-ui/react-alert-dialog'
 import { Modal } from '../../components/Modal'
+import { showToast } from '../../utils/toast.ts'
 
 interface Tag {
   value: number
@@ -23,27 +23,6 @@ export function Tags() {
     setTitle(event.target.value)
   }
 
-  function showToastSuccess(text: string) {
-    toast.success(text, {
-      theme: 'colored',
-      hideProgressBar: true,
-    })
-  }
-
-  function showToastWarning(text: string) {
-    toast.warning(text, {
-      theme: 'colored',
-      hideProgressBar: true,
-    })
-  }
-
-  function showToastError(text: string) {
-    toast.error(text, {
-      theme: 'colored',
-      hideProgressBar: true,
-    })
-  }
-
   function fetchTags() {
     api
       .get('tags')
@@ -51,7 +30,7 @@ export function Tags() {
         setTag(response.data.data)
       })
       .catch(({ message }) => {
-        showToastError(message)
+        showToast({ type: 'error', text: message })
       })
   }
 
@@ -59,7 +38,10 @@ export function Tags() {
     event.preventDefault()
 
     if (title === '') {
-      showToastWarning('Necessário informar o nome da Tag')
+      showToast({
+        type: 'warning',
+        text: 'Necessário informar o nome da Tag',
+      })
       return
     }
 
@@ -69,11 +51,11 @@ export function Tags() {
           title,
         })
         .then(() => {
-          showToastSuccess(`Tag atualizada com sucesso`)
+          showToast({ type: 'success', text: 'Tag atualizada com sucesso' })
           fetchTags()
         })
         .catch(({ message }) => {
-          showToastError(message)
+          showToast({ type: 'error', text: message })
         })
     } else {
       api
@@ -81,11 +63,11 @@ export function Tags() {
           title,
         })
         .then(() => {
-          showToastSuccess(`Tag criada com sucesso`)
+          showToast({ type: 'success', text: 'Tag criada com sucesso' })
           fetchTags()
         })
         .catch(({ message }) => {
-          showToastError(message)
+          showToast({ type: 'error', text: message })
         })
     }
     setTitle('')
@@ -101,11 +83,11 @@ export function Tags() {
     api
       .delete(`tags/${id}`)
       .then(() => {
-        showToastSuccess(`Tag  removida com sucesso`)
+        showToast({ type: 'success', text: 'Tag removida com sucesso' })
         fetchTags()
       })
       .catch(({ message }) => {
-        showToastError(message)
+        showToast({ type: 'error', text: message })
       })
   }
 

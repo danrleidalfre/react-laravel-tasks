@@ -38,7 +38,6 @@ export function Header({ toggleTheme }: Props) {
                 size={32}
                 data-tooltip-id="tooltip"
                 data-tooltip-content="Modo Escuro"
-                data-tooltip-variant="light"
               />
             )}
           </ToggleTheme>
