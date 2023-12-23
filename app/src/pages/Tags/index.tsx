@@ -85,7 +85,7 @@ export function Tags() {
           return (
             <Article key={tag.value}>
               <h3>
-                {tag.label} <span>- Criada em {tag.created_at}</span>
+                {tag.label} <span>- Criada {tag.created_at}</span>
               </h3>
               <Buttons>
                 <ButtonFlat

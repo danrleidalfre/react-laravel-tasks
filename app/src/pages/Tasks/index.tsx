@@ -173,14 +173,12 @@ export function Tasks() {
                   <Flag size={16} />
                   {task.created_at}
                 </span>
-                {task.updated_at &&
-                  task.updated_at !== task.created_at &&
-                  task.updated_at !== task.completed_at && (
-                    <span title="Edição">
-                      <Pen size={16} />
-                      {task.updated_at}
-                    </span>
-                  )}
+                {task.updated_at && task.updated_at !== task.created_at && (
+                  <span title="Edição">
+                    <Pen size={16} />
+                    {task.updated_at}
+                  </span>
+                )}
                 {task.completed_at && (
                   <span title="Conclusão">
                     <CheckCircle size={16} />
