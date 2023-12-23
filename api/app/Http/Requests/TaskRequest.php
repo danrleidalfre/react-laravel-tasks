@@ -19,7 +19,7 @@ class TaskRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json([
-            'data' => $validator->errors(),
-        ]));
+            'data' => $validator->errors()
+        ], 400));
     }
 }
