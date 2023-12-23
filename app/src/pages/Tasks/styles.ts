@@ -71,56 +71,61 @@ export const Article = styled.article`
   justify-content: space-between;
   padding: 1rem;
   margin-bottom: 1rem;
+`
 
-  .title {
-    display: flex;
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 1rem;
+`
+
+export const Title = styled.h3`
+  font-size: 1rem;
+  font-weight: bold;
+  color: ${(props) => props.theme.colors['gray-100']};
+  width: 100%;
+`
+
+export const Tags = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+`
+
+export const Tag = styled.h4`
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  font-size: 0.75rem;
+  background-color: ${(props) => props.theme.colors['purple-dark']};
+  color: ${(props) => props.theme.colors.white};
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s;
+  cursor: default;
+`
+
+export const Dates = styled.div`
+  display: flex;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+
+  @media (max-width: 768px) {
     flex-direction: column;
-    width: 100%;
-    padding: 0 1rem;
+    gap: inherit;
+  }
+`
 
-    h3 {
-      font-size: 1rem;
-      font-weight: bold;
-      color: ${(props) => props.theme.colors['gray-100']};
-      width: 100%;
-    }
+export const Date = styled.span`
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: ${(props) => props.theme.colors['gray-300']};
 
-    .tags {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
-
-      h4 {
-        display: flex;
-        font-weight: 500;
-        align-items: center;
-        font-size: 0.75rem;
-        background-color: ${(props) => props.theme.colors['purple-dark']};
-        color: ${(props) => props.theme.colors.white};
-        padding: 0.125rem 0.5rem;
-        border-radius: 0.5rem;
-        transition: background-color 0.2s;
-        cursor: default;
-      }
-    }
-
-    .date {
-      display: flex;
-      margin-top: 0.5rem;
-      gap: 0.5rem;
-
-      span {
-        display: flex;
-        align-items: center;
-        font-size: 0.75rem;
-        font-weight: 400;
-        color: ${(props) => props.theme.colors['gray-300']};
-
-        svg {
-          margin-right: 0.25rem;
-        }
-      }
-    }
+  svg {
+    margin-right: 0.25rem;
   }
 `
 

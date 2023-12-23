@@ -55,6 +55,10 @@ export const Navigation = styled.nav`
     transition: background-color 0.2s;
     text-transform: uppercase;
 
+    &.active {
+      background-color: ${(props) => props.theme.colors.purple};
+    }
+
     svg {
       margin-right: 5px;
     }

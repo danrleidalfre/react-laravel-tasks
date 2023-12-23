@@ -85,7 +85,11 @@ export function Tags() {
           return (
             <Article key={tag.value}>
               <h3>
-                {tag.label} <span>- Criada {tag.created_at}</span>
+                {tag.label}{' '}
+                <span>
+                  - Criada{' '}
+                  <time dateTime={tag.created_at}>{tag.created_at}</time>
+                </span>
               </h3>
               <Buttons>
                 <ButtonFlat

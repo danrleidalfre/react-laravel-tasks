@@ -1,6 +1,18 @@
 import { Input } from '../../components/Input'
 import { Select } from '../../components/Select'
-import { Article, Buttons, Form, Main, Section } from './styles.ts'
+import {
+  Article,
+  Buttons,
+  Content,
+  Date,
+  Dates,
+  Form,
+  Main,
+  Section,
+  Tag,
+  Tags,
+  Title,
+} from './styles.ts'
 import { Button } from '../../components/Button'
 import { CheckCircle, Flag, Pen } from 'phosphor-react'
 import { api } from '../../lib/axios.ts'
@@ -39,6 +51,12 @@ export function Tasks() {
     setTitle(event.target.value)
   }
 
+  function fetchTasks() {
+    api.get('tasks').then((response) => {
+      setTask(response.data.data)
+    })
+  }
+
   function handleCreateTask(event: FormEvent) {
     event.preventDefault()
 
@@ -57,9 +75,7 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
-          api.get('tasks').then((response) => {
-            setTask(response.data.data)
-          })
+          fetchTasks()
         })
     } else {
       api
@@ -68,9 +84,7 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
-          api.get('tasks').then((response) => {
-            setTask(response.data.data)
-          })
+          fetchTasks()
         })
     }
     setId(0)
@@ -86,9 +100,7 @@ export function Tasks() {
 
   function handleRemoveTask(id: number) {
     api.delete(`tasks/${id}`).then(() => {
-      api.get('tasks').then((response) => {
-        setTask(response.data.data)
-      })
+      fetchTasks()
     })
   }
 
@@ -97,16 +109,12 @@ export function Tasks() {
       return
     }
     api.put(`complete-task/${task.id}`).then(() => {
-      api.get('tasks').then((response) => {
-        setTask(response.data.data)
-      })
+      fetchTasks()
     })
   }
 
   useEffect(() => {
-    api.get('/tasks').then((response) => {
-      setTask(response.data.data)
-    })
+    fetchTasks()
   }, [])
 
   const isEdit = id > 0
@@ -160,32 +168,35 @@ export function Tasks() {
               checked={!!task.completed_at}
               onChange={() => handleCompleteTask(task)}
             />
-            <div className="title">
-              <h3>{task.title}</h3>
-              <div className="tags">
+            <Content>
+              <Title>{task.title}</Title>
+              <Tags>
                 {task.tags.map((tag) => {
-                  return <h4 key={tag.value}>{tag.label}</h4>
+                  return <Tag key={tag.value}>{tag.label}</Tag>
                 })}
-              </div>
-              <div className="date">
-                <span title="Criação">
+              </Tags>
+              <Dates>
+                <Date>
                   <Flag size={16} />
-                  {task.created_at}
-                </span>
-                {task.updated_at && task.updated_at !== task.created_at && (
-                  <span title="Edição">
-                    <Pen size={16} />
-                    {task.updated_at}
-                  </span>
-                )}
+                  <time dateTime={task.created_at}>{task.created_at}</time>
+                </Date>
+                {task.created_at !== task.updated_at &&
+                  task.completed_at !== task.updated_at && (
+                    <Date>
+                      <Pen size={16} />
+                      <time dateTime={task.updated_at}>{task.updated_at}</time>
+                    </Date>
+                  )}
                 {task.completed_at && (
-                  <span title="Conclusão">
+                  <Date>
                     <CheckCircle size={16} />
-                    {task.completed_at}
-                  </span>
+                    <time dateTime={task.completed_at}>
+                      {task.completed_at}
+                    </time>
+                  </Date>
                 )}
-              </div>
-            </div>
+              </Dates>
+            </Content>
             <Buttons>
               <ButtonFlat onClick={() => handleEditTask(task)} />
               <ButtonFlat
