@@ -4,6 +4,7 @@ import { Button } from '../../components/Button'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../lib/axios.ts'
 import { ButtonFlat } from '../../components/ButtonFlat'
+import { toast } from 'react-toastify'
 
 interface Tag {
   value: number
@@ -20,17 +21,57 @@ export function Tags() {
     setTitle(event.target.value)
   }
 
+  function showToastSuccess(text: string) {
+    toast.success(text, {
+      theme: 'colored',
+      hideProgressBar: true,
+    })
+  }
+
+  function showToastWarning(text: string) {
+    toast.warning(text, {
+      theme: 'colored',
+      hideProgressBar: true,
+    })
+  }
+
+  function showToastError(text: string) {
+    toast.error(text, {
+      theme: 'colored',
+      hideProgressBar: true,
+    })
+  }
+
+  function fetchTags() {
+    api
+      .get('tags')
+      .then((response) => {
+        setTag(response.data.data)
+      })
+      .catch(({ message }) => {
+        showToastError(message)
+      })
+  }
+
   function handleCreateTag(event: FormEvent) {
     event.preventDefault()
+
+    if (title === '') {
+      showToastWarning('Necessário informar o nome da Tag')
+      return
+    }
+
     if (id > 0) {
       api
         .put(`tags/${id}`, {
           title,
         })
         .then(() => {
-          api.get('tags').then((response) => {
-            setTag(response.data.data)
-          })
+          showToastSuccess(`Tag "${title}" atualizada com sucesso`)
+          fetchTags()
+        })
+        .catch(({ message }) => {
+          showToastError(message)
         })
     } else {
       api
@@ -38,32 +79,36 @@ export function Tags() {
           title,
         })
         .then(() => {
-          api.get('tags').then((response) => {
-            setTag(response.data.data)
-          })
+          showToastSuccess(`Tag "${title}" criada com sucesso`)
+          fetchTags()
+        })
+        .catch(({ message }) => {
+          showToastError(message)
         })
     }
     setTitle('')
     setId(0)
   }
 
-  function handleEditTag(id: number, title: string) {
-    setId(id)
-    setTitle(title)
+  function handleEditTag(tag: Tag) {
+    setId(tag.value)
+    setTitle(tag.label)
   }
 
-  function handleRemoveTag(id: number) {
-    api.delete(`tags/${id}`).then(() => {
-      api.get('tags').then((response) => {
-        setTag(response.data.data)
+  function handleRemoveTag(tag: Tag) {
+    api
+      .delete(`tags/${tag.value}`)
+      .then(() => {
+        showToastSuccess(`Tag "${tag.label}" removida com sucesso`)
+        fetchTags()
       })
-    })
+      .catch(({ message }) => {
+        showToastError(message)
+      })
   }
 
   useEffect(() => {
-    api.get('tags').then((response) => {
-      setTag(response.data.data)
-    })
+    fetchTags()
   }, [])
 
   const isEdit = id > 0
@@ -73,7 +118,6 @@ export function Tags() {
       <Form onSubmit={handleCreateTag}>
         <Input
           placeholder="Qual tag deseja criar?"
-          required
           name="title"
           value={title}
           onChange={handleChangeTitle}
@@ -92,11 +136,9 @@ export function Tags() {
                 </span>
               </h3>
               <Buttons>
+                <ButtonFlat onClick={() => handleEditTag(tag)} />
                 <ButtonFlat
-                  onClick={() => handleEditTag(tag.value, tag.label)}
-                />
-                <ButtonFlat
-                  onClick={() => handleRemoveTag(tag.value)}
+                  onClick={() => handleRemoveTag(tag)}
                   isEdit={false}
                 />
               </Buttons>
