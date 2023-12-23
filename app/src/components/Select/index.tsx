@@ -47,6 +47,7 @@ export function Select({ tags, onSelectedTags }: TagProps) {
         overrideStrings={{
           selectSomeItems: 'Selecione as Tags...',
           allItemsAreSelected: 'Todas as Tags Selecionadas',
+          noOptions: 'Não há Tags cadastradas',
         }}
       />
     </Component>

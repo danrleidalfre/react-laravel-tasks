@@ -15,22 +15,15 @@ export const Head = styled.header`
   padding: 0 1rem;
 `
 
-export const Logo = styled.div`
-  height: 3rem;
-  width: 3rem;
+export const Logo = styled.h1`
+  display: flex;
+  font-weight: 700;
+  cursor: default;
+  transition: color 0.2s;
+  color: ${(props) => props.theme.colors.blue};
 
-  svg {
-    padding: 0.25rem;
-    background-color: ${(props) => props.theme.colors['purple-dark']};
-    color: ${(props) => props.theme.colors.white};
-    border-radius: 8px;
-    width: 100%;
-    height: 100%;
-    transition: background-color 0.2s;
-  }
-
-  &:hover svg {
-    background-color: ${(props) => props.theme.colors.purple};
+  &:hover {
+    color: ${(props) => props.theme.colors.purple};
   }
 `
 

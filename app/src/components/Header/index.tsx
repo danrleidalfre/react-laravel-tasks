@@ -14,15 +14,15 @@ export function Header({ toggleTheme }: Props) {
     <Container>
       <Head>
         <Logo>
-          <ListChecks />
+          TasksApp <CheckCircle weight={'bold'} size={20} />
         </Logo>
         <Navigation>
           <NavLink to="/">
-            <CheckCircle size={20} />
+            <ListChecks size={20} weight={'bold'} />
             <span>Tarefas</span>
           </NavLink>
           <NavLink to="/tags">
-            <TagSimple size={20} />
+            <TagSimple size={20} weight={'bold'} />
             <span>Tags</span>
           </NavLink>
           <ToggleTheme onClick={toggleTheme}>

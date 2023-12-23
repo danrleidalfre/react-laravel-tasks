@@ -5,6 +5,7 @@ import light from './styles/themes/light.ts'
 import dark from './styles/themes/dark.ts'
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from './routes/Router.tsx'
+import { ToastContainer } from 'react-toastify'
 
 export function App() {
   const [theme, setTheme] = usePersistedState<DefaultTheme>('theme', light)
@@ -14,6 +15,7 @@ export function App() {
   }
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer />
       <GlobalStyle />
       <BrowserRouter>
         <Router toggleTheme={toggleTheme} />

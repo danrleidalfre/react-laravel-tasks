@@ -19,6 +19,7 @@ import { api } from '../../lib/axios.ts'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { ButtonFlat } from '../../components/ButtonFlat'
 import { Checkbox } from '../../components/Checkbox'
+import { toast } from 'react-toastify'
 
 interface Tag {
   value: number
@@ -51,16 +52,56 @@ export function Tasks() {
     setTitle(event.target.value)
   }
 
-  function fetchTasks() {
-    api.get('tasks').then((response) => {
-      setTask(response.data.data)
+  function showToastSuccess(text: string) {
+    toast.success(text, {
+      theme: 'colored',
+      hideProgressBar: true,
     })
+  }
+
+  function showToastWarning(text: string) {
+    toast.warning(text, {
+      theme: 'colored',
+      hideProgressBar: true,
+    })
+  }
+
+  function showToastError(text: string) {
+    toast.error(text, {
+      theme: 'colored',
+      hideProgressBar: true,
+    })
+  }
+
+  function validate() {
+    if (title === '') {
+      showToastWarning('Necessário informar o nome da Tarefa')
+      return false
+    }
+
+    if (tags.length === 0) {
+      showToastWarning('Necessário selecionar ao menos uma Tag')
+      return false
+    }
+
+    return true
+  }
+
+  function fetchTasks() {
+    api
+      .get('tasks')
+      .then((response) => {
+        setTask(response.data.data)
+      })
+      .catch(({ message }) => {
+        showToastError(message)
+      })
   }
 
   function handleCreateTask(event: FormEvent) {
     event.preventDefault()
 
-    if (tags.length === 0) {
+    if (!validate()) {
       return
     }
 
@@ -75,7 +116,11 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
+          showToastSuccess(`Tarefa "${title}" atualizada com sucesso`)
           fetchTasks()
+        })
+        .catch(({ message }) => {
+          showToastError(message)
         })
     } else {
       api
@@ -84,7 +129,11 @@ export function Tasks() {
           tags: tagsForm,
         })
         .then(() => {
+          showToastSuccess(`Tarefa "${title}" criada com sucesso`)
           fetchTasks()
+        })
+        .catch(({ message }) => {
+          showToastError(message)
         })
     }
     setId(0)
@@ -98,19 +147,31 @@ export function Tasks() {
     setTag(task.tags)
   }
 
-  function handleRemoveTask(id: number) {
-    api.delete(`tasks/${id}`).then(() => {
-      fetchTasks()
-    })
+  function handleRemoveTask(task: Task) {
+    api
+      .delete(`tasks/${task.id}`)
+      .then(() => {
+        showToastSuccess(`Tarefa "${task.title}" removida com sucesso`)
+        fetchTasks()
+      })
+      .catch(({ message }) => {
+        showToastError(message)
+      })
   }
 
   function handleCompleteTask(task: Task) {
     if (task.completed_at) {
       return
     }
-    api.put(`complete-task/${task.id}`).then(() => {
-      fetchTasks()
-    })
+    api
+      .put(`complete-task/${task.id}`)
+      .then(() => {
+        showToastSuccess(`Tarefa "${task.title}" marcada como concluída`)
+        fetchTasks()
+      })
+      .catch(({ message }) => {
+        showToastError(message)
+      })
   }
 
   useEffect(() => {
@@ -142,7 +203,6 @@ export function Tasks() {
       <Form onSubmit={handleCreateTask}>
         <Input
           placeholder="Qual tarefa vai realizar?"
-          required
           name="title"
           value={title}
           onChange={handleChangeTitle}
@@ -201,7 +261,7 @@ export function Tasks() {
               <ButtonFlat onClick={() => handleEditTask(task)} />
               <ButtonFlat
                 isEdit={false}
-                onClick={() => handleRemoveTask(task.id)}
+                onClick={() => handleRemoveTask(task)}
               />
             </Buttons>
           </Article>
