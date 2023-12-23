@@ -59,7 +59,11 @@ export const Component = styled.div`
         }
 
         .select-item.selected {
-          background-color: ${(props) => props.theme.colors['gray-600']};
+          background-color: ${(props) => props.theme.colors['gray-400']};
+
+          span {
+            color: ${(props) => props.theme.colors.white};
+          }
         }
       }
     }

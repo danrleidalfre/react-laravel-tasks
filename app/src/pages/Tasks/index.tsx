@@ -1,10 +1,11 @@
 import { Input } from '../../components/Input'
 import { Select } from '../../components/Select'
-import { Article, Form, Main, Section } from './styles.ts'
+import { Article, Buttons, Form, Main, Section } from './styles.ts'
 import { Button } from '../../components/Button'
-import { CheckCircle, Flag, Pen, Trash } from 'phosphor-react'
+import { CheckCircle, Flag, Pen } from 'phosphor-react'
 import { api } from '../../lib/axios.ts'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ButtonFlat } from '../../components/ButtonFlat'
 
 interface Tag {
   value: number
@@ -188,22 +189,13 @@ export function Tasks() {
                 )}
               </div>
             </div>
-            <div className="buttons">
-              <button
-                title="Editar Tarefa"
-                type="button"
-                onClick={() => handleEditTask(task)}
-              >
-                <Pen size={20} />
-              </button>
-              <button
-                type="button"
+            <Buttons>
+              <ButtonFlat onClick={() => handleEditTask(task)} />
+              <ButtonFlat
+                isEdit={false}
                 onClick={() => handleRemoveTask(task.id)}
-                title="Excluir Tarefa"
-              >
-                <Trash size={20} />
-              </button>
-            </div>
+              />
+            </Buttons>
           </Article>
         )
       })}

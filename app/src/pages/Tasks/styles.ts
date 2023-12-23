@@ -175,28 +175,9 @@ export const Article = styled.article`
       }
     }
   }
+`
 
-  .buttons {
-    display: flex;
-    gap: 0.5rem;
-
-    button {
-      background-color: transparent;
-      border: none;
-      color: ${(props) => props.theme.colors['gray-300']};
-      cursor: pointer;
-      transition:
-        background-color 0.2s,
-        color 0.2s;
-      display: flex;
-
-      &:nth-child(1):hover {
-        color: ${(props) => props.theme.colors.yellow};
-      }
-
-      &:nth-child(2):hover {
-        color: ${(props) => props.theme.colors.red};
-      }
-    }
-  }
+export const Buttons = styled.div`
+  display: flex;
+  gap: 0.5rem;
 `

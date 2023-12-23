@@ -1,9 +1,9 @@
 import { Input } from '../../components/Input'
-import { Article, Form, Main, Section } from './styles.ts'
+import { Article, Buttons, Form, Main, Section } from './styles.ts'
 import { Button } from '../../components/Button'
-import { Pen, Trash } from 'phosphor-react'
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { api } from '../../lib/axios.ts'
+import { ButtonFlat } from '../../components/ButtonFlat'
 
 interface Tag {
   value: number
@@ -87,22 +87,15 @@ export function Tags() {
               <h3>
                 {tag.label} <span>- Criada em {tag.created_at}</span>
               </h3>
-              <div className="buttons">
-                <button
-                  title="Editar Tag"
-                  type="button"
+              <Buttons>
+                <ButtonFlat
                   onClick={() => handleEditTag(tag.value, tag.label)}
-                >
-                  <Pen size={20} />
-                </button>
-                <button
-                  title="Excluir Tag"
-                  type="button"
+                />
+                <ButtonFlat
                   onClick={() => handleRemoveTag(tag.value)}
-                >
-                  <Trash size={20} />
-                </button>
-              </div>
+                  isEdit={false}
+                />
+              </Buttons>
             </Article>
           )
         })}
