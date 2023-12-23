@@ -12,7 +12,7 @@ class TagResource extends JsonResource
         return [
             'value' => $this->id,
             'label' => $this->title,
-            'created_at' => $this->created_at->format('d/m/Y H:i'),
+            'created_at' => "dia {$this->created_at->format('d/m/y')} às {$this->created_at->format('H:i:s')}",
         ];
     }
 }
