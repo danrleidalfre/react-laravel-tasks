@@ -1,10 +1,14 @@
 import { Header } from '../components/Header'
 import { Outlet } from 'react-router-dom'
 
-export function Layout() {
+interface Props {
+  toggleTheme(): void
+}
+
+export function Layout({ toggleTheme }: Props) {
   return (
     <>
-      <Header />
+      <Header toggleTheme={toggleTheme} />
       <Outlet />
     </>
   )

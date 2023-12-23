@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  background-color: ${(props) => props.theme['gray-700']};
+  background-color: ${(props) => props.theme.colors['gray-700']};
 `
 
 export const Head = styled.header`
@@ -20,8 +20,8 @@ export const Logo = styled.div`
   width: 2.5rem;
 
   svg {
-    background-color: ${(props) => props.theme['purple-dark']};
-    color: ${(props) => props.theme['gray-100']};
+    background-color: ${(props) => props.theme.colors['purple-dark']};
+    color: ${(props) => props.theme.colors.white};
     border-radius: 8px;
     width: 100%;
     height: 100%;
@@ -29,12 +29,13 @@ export const Logo = styled.div`
   }
 
   &:hover svg {
-    background-color: ${(props) => props.theme.purple};
+    background-color: ${(props) => props.theme.colors.purple};
   }
 `
 
 export const Navigation = styled.nav`
   display: flex;
+  align-items: center;
   gap: 1rem;
 
   a {
@@ -43,10 +44,10 @@ export const Navigation = styled.nav`
     justify-content: center;
     padding: 0 1rem;
     height: 2.5rem;
-    background-color: ${(props) => props.theme['purple-dark']};
+    background-color: ${(props) => props.theme.colors['purple-dark']};
     border: 0;
     border-radius: 8px;
-    color: ${(props) => props.theme['gray-100']};
+    color: ${(props) => props.theme.colors.white};
     cursor: pointer;
     font-size: 1rem;
     font-weight: 700;
@@ -60,6 +61,13 @@ export const Navigation = styled.nav`
   }
 
   a:hover {
-    background-color: ${(props) => props.theme.purple};
+    background-color: ${(props) => props.theme.colors.purple};
+  }
+`
+
+export const ToggleTheme = styled.div`
+  svg {
+    cursor: pointer;
+    color: ${(props) => props.theme.colors['gray-100']};
   }
 `

@@ -8,15 +8,15 @@ export const Component = styled.div`
     align-items: center;
     padding: 0 1rem;
     border-radius: 8px;
-    background-color: ${(props) => props.theme['gray-500']};
-    border: 1px solid ${(props) => props.theme['gray-500']};
+    background-color: ${(props) => props.theme.colors['gray-500']};
+    border: 1px solid ${(props) => props.theme.colors['gray-500']};
     cursor: pointer;
     font-size: 1rem;
-    color: ${(props) => props.theme['gray-300']};
+    color: ${(props) => props.theme.colors['gray-100']};
 
     &:focus-within {
       box-shadow: none;
-      border: 1px solid ${(props) => props.theme['gray-500']};
+      border: 1px solid ${(props) => props.theme.colors['gray-500']};
     }
 
     .dropdown-heading {
@@ -24,7 +24,7 @@ export const Component = styled.div`
       cursor: pointer;
 
       .gray {
-        color: ${(props) => props.theme['gray-300']};
+        color: ${(props) => props.theme.colors['gray-300']};
         font-size: 1rem;
         font-family: 'Inter', sans-serif;
       }
@@ -33,13 +33,14 @@ export const Component = styled.div`
     .dropdown-content {
       left: 0;
       border-radius: 8px;
-      border: 1px solid ${(props) => props.theme['gray-400']};
+      padding: 0;
+      margin-top: 0.5rem;
 
       .panel-content {
-        background-color: ${(props) => props.theme['gray-500']};
+        background-color: ${(props) => props.theme.colors['gray-500']};
 
         .item-renderer {
-          color: ${(props) => props.theme['gray-300']};
+          color: ${(props) => props.theme.colors['gray-300']};
           font-size: 1rem;
           font-family: 'Inter', sans-serif;
           padding: 0 1rem;
@@ -50,11 +51,15 @@ export const Component = styled.div`
         }
 
         .select-item:hover {
-          background-color: ${(props) => props.theme['gray-400']};
+          background-color: ${(props) => props.theme.colors['gray-400']};
+
+          span {
+            color: ${(props) => props.theme.colors.white};
+          }
         }
 
         .select-item.selected {
-          background-color: ${(props) => props.theme['gray-600']};
+          background-color: ${(props) => props.theme.colors['gray-600']};
         }
       }
     }

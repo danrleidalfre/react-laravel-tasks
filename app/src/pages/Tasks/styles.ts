@@ -35,16 +35,24 @@ export const Section = styled.section`
       font-weight: 700;
 
       &:first-child {
-        color: ${(props) => props.theme.blue};
+        color: ${(props) => props.theme.colors.blue};
+
+        span {
+          background-color: ${(props) => props.theme.colors.blue};
+        }
       }
 
       &:last-child {
-        color: ${(props) => props.theme.purple};
+        color: ${(props) => props.theme.colors.purple};
+
+        span {
+          background-color: ${(props) => props.theme.colors.purple};
+        }
       }
 
       span {
-        color: ${(props) => props.theme['gray-200']};
-        background-color: ${(props) => props.theme['gray-400']};
+        color: ${(props) => props.theme.colors.white};
+        background-color: ${(props) => props.theme.colors['gray-400']};
         font-size: 0.875rem;
         margin-left: 0.5rem;
         padding: 0.15rem 0.5rem;
@@ -55,8 +63,8 @@ export const Section = styled.section`
 `
 
 export const Article = styled.article`
-  background-color: ${(props) => props.theme['gray-500']};
-  border: 1px solid ${(props) => props.theme['gray-400']};
+  background-color: ${(props) => props.theme.colors['gray-500']};
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
   border-radius: 8px;
   display: flex;
   align-items: flex-start;
@@ -83,24 +91,24 @@ export const Article = styled.article`
     height: 1.5rem;
     background-color: transparent;
     border-radius: 50%;
-    border: 2px solid ${(props) => props.theme.blue};
+    border: 2px solid ${(props) => props.theme.colors.blue};
     transition:
       border 0.2s,
       background-color 0.2s;
   }
 
   input:hover + label:before {
-    border: 2px solid ${(props) => props.theme['blue-dark']};
+    border: 2px solid ${(props) => props.theme.colors['blue-dark']};
   }
 
   input:checked + label:before {
-    background-color: ${(props) => props.theme['purple-dark']};
-    border: 2px solid ${(props) => props.theme['purple-dark']};
+    background-color: ${(props) => props.theme.colors['purple-dark']};
+    border: 2px solid ${(props) => props.theme.colors['purple-dark']};
   }
 
   input:checked:hover + label:before {
-    background-color: ${(props) => props.theme.purple};
-    border: 2px solid ${(props) => props.theme.purple};
+    background-color: ${(props) => props.theme.colors.purple};
+    border: 2px solid ${(props) => props.theme.colors.purple};
   }
 
   input:checked + label:after {
@@ -126,7 +134,7 @@ export const Article = styled.article`
     h3 {
       font-size: 1rem;
       font-weight: bold;
-      color: ${(props) => props.theme['gray-100']};
+      color: ${(props) => props.theme.colors['gray-100']};
       width: 100%;
     }
 
@@ -140,8 +148,8 @@ export const Article = styled.article`
         font-weight: 500;
         align-items: center;
         font-size: 0.75rem;
-        background-color: ${(props) => props.theme['purple-dark']};
-        color: ${(props) => props.theme['gray-100']};
+        background-color: ${(props) => props.theme.colors['purple-dark']};
+        color: ${(props) => props.theme.colors.white};
         padding: 0.125rem 0.5rem;
         border-radius: 0.5rem;
         transition: background-color 0.2s;
@@ -159,7 +167,7 @@ export const Article = styled.article`
         align-items: center;
         font-size: 0.75rem;
         font-weight: 400;
-        color: ${(props) => props.theme['gray-300']};
+        color: ${(props) => props.theme.colors['gray-300']};
 
         svg {
           margin-right: 0.25rem;
@@ -175,23 +183,19 @@ export const Article = styled.article`
     button {
       background-color: transparent;
       border: none;
-      color: ${(props) => props.theme['gray-300']};
+      color: ${(props) => props.theme.colors['gray-300']};
       cursor: pointer;
       transition:
         background-color 0.2s,
         color 0.2s;
-      padding: 5px;
-      border-radius: 4px;
       display: flex;
 
       &:nth-child(1):hover {
-        background-color: ${(props) => props.theme['gray-400']};
-        color: ${(props) => props.theme.yellow};
+        color: ${(props) => props.theme.colors.yellow};
       }
 
       &:nth-child(2):hover {
-        background-color: ${(props) => props.theme['gray-400']};
-        color: ${(props) => props.theme.red};
+        color: ${(props) => props.theme.colors.red};
       }
     }
   }

@@ -7,8 +7,8 @@ export const Component = styled.div`
     justify-content: center;
     padding: 0 1.5rem;
     height: 4rem;
-    background-color: ${(props) => props.theme['blue-dark']};
-    color: ${(props) => props.theme['gray-100']};
+    background-color: ${(props) => props.theme.colors['blue-dark']};
+    color: ${(props) => props.theme.colors.white};
     border: 0;
     border-radius: 8px;
     cursor: pointer;
@@ -18,7 +18,7 @@ export const Component = styled.div`
     text-transform: uppercase;
 
     &:hover {
-      background-color: ${(props) => props.theme.blue};
+      background-color: ${(props) => props.theme.colors.blue};
     }
 
     span {

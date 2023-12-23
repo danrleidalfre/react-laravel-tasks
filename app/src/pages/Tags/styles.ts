@@ -25,8 +25,8 @@ export const Section = styled.section``
 
 export const Article = styled.article`
   margin-top: 1rem;
-  background-color: ${(props) => props.theme['gray-500']};
-  border: 1px solid ${(props) => props.theme['gray-400']};
+  background-color: ${(props) => props.theme.colors['gray-500']};
+  box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 3px;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@ export const Article = styled.article`
   h3 {
     font-size: 1rem;
     font-weight: bold;
-    color: ${(props) => props.theme['gray-100']};
+    color: ${(props) => props.theme.colors['gray-100']};
     line-height: 140%;
     text-align: left;
     width: 100%;
@@ -44,7 +44,7 @@ export const Article = styled.article`
     span {
       font-size: 0.75rem;
       font-weight: 400;
-      color: ${(props) => props.theme['gray-300']};
+      color: ${(props) => props.theme.colors['gray-300']};
     }
   }
 
@@ -55,23 +55,19 @@ export const Article = styled.article`
     button {
       background-color: transparent;
       border: none;
-      color: ${(props) => props.theme['gray-300']};
+      color: ${(props) => props.theme.colors['gray-300']};
       cursor: pointer;
       transition:
         background-color 0.2s,
         color 0.2s;
-      padding: 5px;
-      border-radius: 4px;
       display: flex;
 
       &:nth-child(1):hover {
-        background-color: ${(props) => props.theme['gray-400']};
-        color: ${(props) => props.theme.yellow};
+        color: ${(props) => props.theme.colors.yellow};
       }
 
       &:nth-child(2):hover {
-        background-color: ${(props) => props.theme['gray-400']};
-        color: ${(props) => props.theme.red};
+        color: ${(props) => props.theme.colors.red};
       }
     }
   }

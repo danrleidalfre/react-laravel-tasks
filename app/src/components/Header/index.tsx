@@ -1,8 +1,21 @@
-import { Container, Head, Logo, Navigation } from './styles.ts'
+import { Container, Head, Logo, Navigation, ToggleTheme } from './styles.ts'
+import {
+  CheckCircle,
+  CircleWavyCheck,
+  Moon,
+  Sun,
+  TagSimple,
+} from 'phosphor-react'
+import { useContext } from 'react'
+import { ThemeContext } from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import { CheckCircle, CircleWavyCheck, TagSimple } from 'phosphor-react'
 
-export function Header() {
+interface Props {
+  toggleTheme(): void
+}
+
+export function Header({ toggleTheme }: Props) {
+  const { title } = useContext(ThemeContext)
   return (
     <Container>
       <Head>
@@ -18,6 +31,9 @@ export function Header() {
             <TagSimple size={20} />
             <span>Tags</span>
           </NavLink>
+          <ToggleTheme onClick={toggleTheme}>
+            {title === 'light' ? <Sun size={35} /> : <Moon size={35} />}
+          </ToggleTheme>
         </Navigation>
       </Head>
     </Container>
