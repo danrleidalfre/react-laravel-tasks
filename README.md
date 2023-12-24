@@ -21,7 +21,7 @@
 
 `composer install`
 
-`docker compose up -d`
+`./vendor/bin/sail up`
 
 `docker exec api-laravel.tasks_api-1 php artisan migrate`
 
