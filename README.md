@@ -11,12 +11,15 @@
 
 ## Requisitos:
 - Docker
+- Composer versão 2.6
 - Node.js versão 20
 
 ## Rodar o projeto:
 `git clone git@github.com:danrleidalfre/react-laravel-tasks.git`
 
 `cd react-laravel-tasks/api`
+
+`composer install`
 
 `docker compose up -d`
 
