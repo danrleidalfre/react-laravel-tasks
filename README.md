@@ -11,7 +11,6 @@
 
 ## Requisitos:
 - Docker
-- Composer versão 2.6
 - Node.js versão 20
 
 ## Rodar o projeto:
@@ -19,11 +18,15 @@
 
 `cd react-laravel-tasks/api`
 
-`composer install`
+`docker run --rm \ -u "$(id -u):$(id -g)" \ -v "$(pwd):/var/www/html" \ -w /var/www/html \ laravelsail/php83-composer:latest \ composer install --ignore-platform-reqs`
 
-`./vendor/bin/sail up -d`
+`cp .env.example .env`
 
-`docker exec api-laravel.tasks_api-1 php artisan migrate`
+`./vendor/bin/sail artisan key:generate`
+
+`./vendor/bin/sail/up -d`
+
+`./vendor/bin/sail artisan migrate`
 
 `cd ../app`
 
